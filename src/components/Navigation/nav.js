@@ -1,13 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 import "./Nav.scss";
-function Nav() {
+function Nav(props) {
     return (
         <div className="topnav">
-            <a className="active">Home</a>
-            <a href="/news">News</a>
-            <a href="/contact">Contact</a>
-            <a href="/about">About</a>
+            <NavLink to="/" exact>
+                Home
+            </NavLink>
+            <NavLink to="/news">News</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/about">About</NavLink>
         </div>
     );
 }
