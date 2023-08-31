@@ -2,9 +2,9 @@ import "./Login.scss";
 function Login() {
     return (
         <div className="login-container">
-            <div className="container mt-3">
-                <div className="row">
-                    <div className="content-left col-7 d-none d-sm-block">
+            <div className="container">
+                <div className="row px-1 px-sm-0">
+                    <div className="content-left col-sm-7 d-sm-block d-none d-sm-block">
                         <div className="brand">Truong Vu Thuan</div>
                         <div className="detail">
                             [ Tiktok có gì zui] Khi bạn hướng nội tới há dì lao
@@ -12,7 +12,10 @@ function Login() {
                             là trải nghiệm thế nào?
                         </div>
                     </div>
-                    <div className="content-right col-12 col-s  m-5 d-flex flex-column gap-3 py-3">
+                    <div className="content-right col-sm-5 col-12 d-flex flex-column gap-3 py-3 mx-sm-0 mx-3">
+                        <div className="brand d-sm-none text-center">
+                            Truong Vu Thuan
+                        </div>
                         <input
                             type="text"
                             className="form-control"
@@ -25,7 +28,9 @@ function Login() {
                         />
                         <button className="btn btn-primary">Login</button>
                         <span className="text-center">
-                            Forgot your password ?
+                            <a className="forgot-password" href="/#">
+                                Forgot your password ?
+                            </a>
                         </span>
                         <hr />
                         <div className="text-center">

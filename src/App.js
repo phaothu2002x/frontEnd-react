@@ -1,6 +1,6 @@
 import "./App.scss";
 import Login from "./components/Login/login";
-import Navn from "./components/Navigation/nav";
+// import Nav from "./components/Navigation/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
     return (
