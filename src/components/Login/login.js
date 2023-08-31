@@ -1,5 +1,10 @@
+import { useHistory } from "react-router-dom";
 import "./Login.scss";
 function Login() {
+    let history = useHistory();
+    const handleCreateNewAccount = () => {
+        history.push("/register");
+    };
     return (
         <div className="login-container">
             <div className="container">
@@ -34,7 +39,10 @@ function Login() {
                         </span>
                         <hr />
                         <div className="text-center">
-                            <button className="btn btn-success">
+                            <button
+                                className="btn btn-success"
+                                onClick={handleCreateNewAccount}
+                            >
                                 Create new account
                             </button>
                         </div>

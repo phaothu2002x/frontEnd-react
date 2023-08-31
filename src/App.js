@@ -1,5 +1,6 @@
 import "./App.scss";
 import Login from "./components/Login/login";
+import Register from "./components/Register/register";
 // import Nav from "./components/Navigation/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
@@ -14,6 +15,9 @@ function App() {
                     <Route path="/contact">Contact</Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/register">
+                        <Register />
                     </Route>
                     <Route path="/" exact>
                         Home
