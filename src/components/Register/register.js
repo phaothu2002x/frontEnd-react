@@ -1,11 +1,33 @@
 import { useHistory } from "react-router-dom";
 import "./Register.scss";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-function Register() {
+function Register(props) {
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     let history = useHistory();
     const handleLogin = () => {
         history.push("/login");
     };
+
+    useEffect(() => {
+        // axios.get("http://localhost:8080/api/test-api").then((data) => {
+        //     console.log(">>>> check data:", data);
+        // });
+    }, []);
+
+    const handleRegister = () => {
+        toast("Wow so ez");
+        let userData = { email, phone, username, password };
+        console.log(userData);
+    };
+
     return (
         <div className="register-container">
             <div className="container">
@@ -26,6 +48,8 @@ function Register() {
                         <div className="form-group">
                             <label>Email:</label>
                             <input
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 type="text"
                                 className="form-control"
                                 placeholder="Email address"
@@ -35,6 +59,8 @@ function Register() {
                         <div className="form-group">
                             <label>Phone:</label>
                             <input
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
                                 type="text"
                                 className="form-control"
                                 placeholder="Phone number"
@@ -43,6 +69,8 @@ function Register() {
                         <div className="form-group">
                             <label>UserName:</label>
                             <input
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 type="text"
                                 className="form-control"
                                 placeholder="UserName"
@@ -51,6 +79,8 @@ function Register() {
                         <div className="form-group">
                             <label>Password:</label>
                             <input
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 type="password"
                                 className="form-control"
                                 placeholder="Password"
@@ -59,12 +89,21 @@ function Register() {
                         <div className="form-group">
                             <label>Re-enter Password:</label>
                             <input
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
                                 type="password"
                                 className="form-control"
                                 placeholder="Re-enter Password"
                             />
                         </div>
-                        <button className="btn btn-primary">Register</button>
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => handleRegister()}
+                        >
+                            Register
+                        </button>
 
                         <hr />
                         <div className="text-center">
