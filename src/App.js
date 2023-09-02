@@ -1,7 +1,7 @@
 import "./App.scss";
 import Login from "./components/Login/login";
 import Register from "./components/Register/register";
-import ToastContainer from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import Nav from "./components/Navigation/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -29,7 +29,7 @@ function App() {
             </div>
 
             <ToastContainer
-                position="top-right"
+                position="bottom-center"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
@@ -40,8 +40,6 @@ function App() {
                 pauseOnHover
                 theme="light"
             />
-            {/* Same as */}
-            <ToastContainer />
         </Router>
     );
 }

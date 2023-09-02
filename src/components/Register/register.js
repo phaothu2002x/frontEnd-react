@@ -22,8 +22,36 @@ function Register(props) {
         // });
     }, []);
 
+    const isValidInput = () => {
+        if (!email) {
+            toast.error("email is require");
+            return false;
+        }
+        if (!phone) {
+            toast.error("phone is require");
+            return false;
+        }
+        if (!password) {
+            toast.error("password is require");
+            return false;
+        }
+        if (password != confirmPassword) {
+            toast.error("confirmPassword is wrong");
+            return false;
+        }
+
+        let regx = /\S+@S+\.\S+/;
+        if (!regx.test(email)) {
+            toast.error("unvalid email");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleRegister = () => {
-        toast("Wow so ez");
+        let check = isValidInput();
+
         let userData = { email, phone, username, password };
         console.log(userData);
     };
