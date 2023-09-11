@@ -3,13 +3,28 @@ import Login from "./components/Login/login";
 import Register from "./components/Register/register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import Nav from "./components/Navigation/nav";
+import Nav from "./components/Navigation/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Users from "./components/ManageUser/users";
+import { useEffect, useState } from "react";
+import _ from "lodash";
+
 function App() {
+    const [account, setAccount] = useState("");
+
+    useEffect(() => {
+        let session = sessionStorage.getItem("account");
+        if (session) {
+            setAccount(JSON.parse(session));
+        }
+    }, []);
+
     return (
         <Router>
             <div className="app-container">
-                {/* <Nav /> */}
+                {account && !_.isEmpty(account) && account.isAuthenticated && (
+                    <Nav />
+                )}
 
                 <Switch>
                     <Route path="/news">News</Route>
@@ -20,6 +35,9 @@ function App() {
                     </Route>
                     <Route path="/register">
                         <Register />
+                    </Route>
+                    <Route path="/users">
+                        <Users />
                     </Route>
                     <Route path="/" exact>
                         Home
