@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import "./Login.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { loginUser } from "../../services/userService";
 function Login() {
@@ -45,6 +45,7 @@ function Login() {
             return;
         }
 
+        //handle session
         let response = await loginUser(valueLogin, password);
         if (response && response.data && +response.data.EC === 0) {
             //success
@@ -61,6 +62,14 @@ function Login() {
             toast.error(response.data.EM);
         }
     };
+
+    useEffect(() => {
+        let session = sessionStorage.getItem("account");
+        if (session) {
+            history.push("/");
+            window.location.reload();
+        }
+    }, []);
 
     return (
         <div className="login-container">

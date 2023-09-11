@@ -1,13 +1,11 @@
 import "./App.scss";
-import Login from "./components/Login/login";
-import Register from "./components/Register/register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Nav from "./components/Navigation/nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Users from "./components/ManageUser/users";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useEffect, useState } from "react";
-import _ from "lodash";
+
+import AppRoutes from "./routes/appRoutes";
 
 function App() {
     const [account, setAccount] = useState("");
@@ -20,31 +18,15 @@ function App() {
     }, []);
 
     return (
-        <Router>
-            <div className="app-container">
-                {account && !_.isEmpty(account) && account.isAuthenticated && (
+        <>
+            <Router>
+                <div className="app-header">
                     <Nav />
-                )}
-
-                <Switch>
-                    <Route path="/news">News</Route>
-                    <Route path="/about">About</Route>
-                    <Route path="/contact">Contact</Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/register">
-                        <Register />
-                    </Route>
-                    <Route path="/users">
-                        <Users />
-                    </Route>
-                    <Route path="/" exact>
-                        Home
-                    </Route>
-                    <Route path="*">404 not found</Route>
-                </Switch>
-            </div>
+                </div>
+                <div className="app-container">
+                    <AppRoutes />
+                </div>
+            </Router>
 
             <ToastContainer
                 position="bottom-center"
@@ -58,7 +40,7 @@ function App() {
                 pauseOnHover
                 theme="light"
             />
-        </Router>
+        </>
     );
 }
 
