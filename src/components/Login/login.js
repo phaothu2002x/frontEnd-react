@@ -19,6 +19,12 @@ function Login() {
         history.push("/register");
     };
 
+    const handlePressEnter = (e) => {
+        if (e.charCode === 13 && e.code === "Enter") {
+            handleLogin();
+        }
+    };
+
     const handleLogin = async () => {
         setObjValidInput(defaultObjValidInput);
         if (!valueLogin) {
@@ -48,6 +54,7 @@ function Login() {
             };
             sessionStorage.setItem("account", JSON.stringify(data));
             history.push("/users");
+            window.location.reload();
         }
 
         if (response && response.data && +response.data.EC !== 0) {
@@ -92,6 +99,7 @@ function Login() {
                             placeholder="Your password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            onKeyPress={(e) => handlePressEnter(e)}
                         />
                         <button
                             className="btn btn-primary"
