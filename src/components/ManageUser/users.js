@@ -8,14 +8,17 @@ import "./Users.scss";
 const Users = (props) => {
     const [listUsers, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [currentLimit, setCurrentLimit] = useState(2);
+    const [currentLimit, setCurrentLimit] = useState(3);
     const [totalPage, setTotalPage] = useState(0);
 
+    //modal delete
     const [dataModal, setDataModal] = useState({});
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
 
+    //modal update/create user
     const [isShowModalUser, setIsShowModalUser] = useState(false);
-
+    const [actionModalUser, setActionModalUser] = useState("CREATE");
+    const [dataModalUser, setDataModalUser] = useState({});
     useEffect(() => {
         fetchUser();
     }, [currentPage]);
@@ -43,8 +46,10 @@ const Users = (props) => {
         setDataModal({});
     };
 
-    const onHideModalUser = () => {
+    const onHideModalUser = async () => {
         setIsShowModalUser(false);
+        setDataModal({});
+        await fetchUser();
     };
 
     const confirmDeleteUser = async () => {
@@ -59,6 +64,12 @@ const Users = (props) => {
         }
     };
 
+    const handleEditUser = (user) => {
+        setActionModalUser("UPDATE");
+        setDataModalUser(user);
+        setIsShowModalUser(true);
+    };
+
     return (
         <>
             <div className="container">
@@ -71,7 +82,10 @@ const Users = (props) => {
                             <button className="btn btn-success">Refesh</button>
                             <button
                                 className="btn btn-primary"
-                                onClick={() => setIsShowModalUser(true)}
+                                onClick={() => {
+                                    setIsShowModalUser(true);
+                                    setActionModalUser("CREATE");
+                                }}
                             >
                                 Add new user
                             </button>
@@ -95,7 +109,12 @@ const Users = (props) => {
                                         {listUsers.map((item, index) => {
                                             return (
                                                 <tr key={`row-${index}`}>
-                                                    <td>{index + 1}</td>
+                                                    <td>
+                                                        {(currentPage - 1) *
+                                                            currentLimit +
+                                                            index +
+                                                            1}
+                                                    </td>
                                                     <td>{item.id}</td>
                                                     <td>{item.email}</td>
                                                     <td>{item.username}</td>
@@ -105,7 +124,14 @@ const Users = (props) => {
                                                             : ""}
                                                     </td>
                                                     <td>
-                                                        <button className="btn btn-warning mx-3">
+                                                        <button
+                                                            className="btn btn-warning mx-3"
+                                                            onClick={() => {
+                                                                handleEditUser(
+                                                                    item
+                                                                );
+                                                            }}
+                                                        >
                                                             Edit
                                                         </button>
                                                         <button
@@ -169,9 +195,10 @@ const Users = (props) => {
             />
 
             <ModalUser
-                title="Create new User"
                 show={isShowModalUser}
                 onHide={onHideModalUser}
+                action={actionModalUser}
+                dataModalUser={dataModalUser}
             />
         </>
     );
