@@ -70,16 +70,28 @@ const Users = (props) => {
         setIsShowModalUser(true);
     };
 
+    const handleRefresh = async () => {
+        await fetchUser();
+    };
+
     return (
         <>
             <div className="container">
                 <div className="manage-users-container">
                     <div className="user-header">
-                        <div className="title">
-                            <h3>Table User</h3>
+                        <div className="title mt-3">
+                            <h3>Manage User</h3>
                         </div>
-                        <div className="actions">
-                            <button className="btn btn-success">Refesh</button>
+                        <div className="actions my-3">
+                            <button
+                                className="btn btn-success refresh"
+                                onClick={() => {
+                                    handleRefresh();
+                                }}
+                            >
+                                <i className="fa fa-refresh"></i>
+                                Refesh
+                            </button>
                             <button
                                 className="btn btn-primary"
                                 onClick={() => {
@@ -87,6 +99,7 @@ const Users = (props) => {
                                     setActionModalUser("CREATE");
                                 }}
                             >
+                                <i class="fa fa-plus-circle"></i>
                                 Add new user
                             </button>
                         </div>
@@ -124,26 +137,28 @@ const Users = (props) => {
                                                             : ""}
                                                     </td>
                                                     <td>
-                                                        <button
-                                                            className="btn btn-warning mx-3"
+                                                        <span
+                                                            title="Edit"
+                                                            className="edit"
                                                             onClick={() => {
                                                                 handleEditUser(
                                                                     item
                                                                 );
                                                             }}
                                                         >
-                                                            Edit
-                                                        </button>
-                                                        <button
-                                                            className="btn btn-danger"
+                                                            <i className="fa fa-pencil-square"></i>
+                                                        </span>
+                                                        <span
+                                                            title="Delete"
+                                                            className="delete"
                                                             onClick={() => {
                                                                 handleDeleteUser(
                                                                     item
                                                                 );
                                                             }}
                                                         >
-                                                            Delete
-                                                        </button>
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                             );
