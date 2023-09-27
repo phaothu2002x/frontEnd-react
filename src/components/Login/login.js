@@ -56,6 +56,7 @@ function Login() {
             sessionStorage.setItem("account", JSON.stringify(data));
             history.push("/users");
             window.location.reload();
+            //redux
         }
 
         if (response && +response.EC !== 0) {

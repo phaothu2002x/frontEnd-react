@@ -71,14 +71,13 @@ function Register(props) {
         let check = isValidInput();
         //đá qua cho server check để trả về phản hổi (response)
         if (check === true) {
-            let response = await registerNewUser(
+            let serverData = await registerNewUser(
                 email,
                 phone,
                 username,
                 password
             );
             //hứng response để direct người dùng
-            let serverData = response.data;
             if (+serverData.EC === 0) {
                 toast.success(serverData.EM);
                 history.push("/login");
