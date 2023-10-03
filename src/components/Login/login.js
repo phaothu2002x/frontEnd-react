@@ -53,7 +53,6 @@ function Login() {
         let response = await loginUser(valueLogin, password);
         if (response && +response.EC === 0) {
             //success
-
             let groupWithRoles = response.DT.groupWithRoles;
             let email = response.DT.email;
             let username = response.DT.username;
@@ -63,10 +62,8 @@ function Login() {
                 token,
                 account: { groupWithRoles, email, username },
             };
-            sessionStorage.setItem("account", JSON.stringify(data));
 
             loginContext(data);
-
             history.push("/users");
             // window.location.reload();
             //redux
@@ -76,14 +73,6 @@ function Login() {
             toast.error(response.EM);
         }
     };
-
-    useEffect(() => {
-        let session = sessionStorage.getItem("account");
-        if (session) {
-            history.push("/");
-            window.location.reload();
-        }
-    }, []);
 
     return (
         <div className="login-container">
