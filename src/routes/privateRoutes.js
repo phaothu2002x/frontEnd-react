@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 import { Route } from "react-router-dom";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function PrivateRoutes(props) {

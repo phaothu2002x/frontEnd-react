@@ -63,6 +63,7 @@ function Login() {
                 account: { groupWithRoles, email, username },
             };
 
+            localStorage.setItem("jwt", token);
             loginContext(data);
             history.push("/users");
             // window.location.reload();
