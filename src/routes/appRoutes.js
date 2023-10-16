@@ -3,7 +3,7 @@ import Login from "../components/Login/login";
 import Register from "../components/Register/register";
 import Users from "../components/ManageUser/users";
 import PrivateRoutes from "./privateRoutes";
-
+import Roles from "../components/Role/Role";
 const AppRoutes = (props) => {
     const Project = () => {
         return <div> Projects component</div>;
@@ -14,6 +14,7 @@ const AppRoutes = (props) => {
             <Switch>
                 <PrivateRoutes path="/users" component={Users} />
                 <PrivateRoutes path="/projects" component={Project} />
+                <PrivateRoutes path="/roles" component={Roles} />
 
                 <Route path="/login">
                     <Login />
